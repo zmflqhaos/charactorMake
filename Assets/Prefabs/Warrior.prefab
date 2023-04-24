@@ -154,13 +154,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c59db8c0956305f4da157acaa6dddae5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Front: {fileID: 2465060578029746036}
-  Back: {fileID: 2030559483795145922}
   Left: {fileID: 1262752340133911472}
   Right: {fileID: 3328341158420952350}
   Parts:
-  - {fileID: 2465060578029746036}
-  - {fileID: 2030559483795145922}
   - {fileID: 1262752340133911472}
   - {fileID: 3328341158420952350}
   Shadows:

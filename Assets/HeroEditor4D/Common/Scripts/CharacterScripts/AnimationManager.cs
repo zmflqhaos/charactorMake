@@ -170,8 +170,8 @@ namespace Assets.HeroEditor4D.Common.Scripts.CharacterScripts
 
             if (Character.Parts[0].PrimaryWeapon != null)
             {
-                var loaded = Character.Front.CompositeWeapon.Single(i => i.name == "Gun");
-                var empty = Character.Front.CompositeWeapon.Single(i => i.name == "GunEmpty");
+                var loaded = Character.Left.CompositeWeapon.Single(i => i.name == "Gun");
+                var empty = Character.Left.CompositeWeapon.Single(i => i.name == "GunEmpty");
 
                 foreach (var part in Character.Parts)
                 {

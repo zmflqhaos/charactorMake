@@ -23,7 +23,7 @@ namespace Assets.HeroEditor4D.Common.Scripts.ExampleScripts
         {
             Appearance.Setup(Character);
 
-            var helmetId = Character.SpriteCollection.Armor.SingleOrDefault(i => i.Sprites.Contains(Character.Front.Helmet))?.Id;
+            var helmetId = Character.SpriteCollection.Armor.SingleOrDefault(i => i.Sprites.Contains(Character.Left.Helmet))?.Id;
 
             AvatarSetup.Initialize(Appearance, helmetId);
         }

@@ -43,7 +43,6 @@ namespace Assets.HeroEditor4D.Common.Scripts.EditorScripts
         public ColorSetup ColorSetup;
         public List<string> CollectionSorting;
         public List<CollectionBackground> CollectionBackgrounds;
-        public List<Button> EditorOnlyButtons;
         public string AssetUrl;
         
         [Serializable]
@@ -84,7 +83,6 @@ namespace Assets.HeroEditor4D.Common.Scripts.EditorScripts
         {
             Character.Initialize();
             OnSelectTab(true);
-            EditorOnlyButtons.ForEach(i => i.interactable = Application.isEditor);
             RequestFeedback();
         }
 
@@ -119,7 +117,7 @@ namespace Assets.HeroEditor4D.Common.Scripts.EditorScripts
 
                     ItemCollection.Active.Items = sprites.Select(i => CreateFakeItemParams(new Item(i.Id), i)).ToList();
                     equipAction = item => Character.Equip(item.Sprite, EquipmentPart.Armor);
-                    equippedIndex = Character.Front.Armor == null ? -1 : sprites.FindIndex(i => i.Sprites.Contains(Character.Front.Armor.SingleOrDefault(j => j.name == "FrontBody")));
+                    equippedIndex = Character.Left.Armor == null ? -1 : sprites.FindIndex(i => i.Sprites.Contains(Character.Left.Armor.SingleOrDefault(j => j.name == "LeftBody")));
                     break;
                 }
                 case "Helmet":
@@ -128,7 +126,7 @@ namespace Assets.HeroEditor4D.Common.Scripts.EditorScripts
 
                     ItemCollection.Active.Items = sprites.Select(i => CreateFakeItemParams(new Item(i.Id), i, ".Armor.", ".Helmet.")).ToList();
                     equipAction = item => Character.Equip(item.Sprite, EquipmentPart.Helmet);
-                    equippedIndex = sprites.FindIndex(i => i.Sprites.Contains(Character.Front.Helmet));
+                    equippedIndex = sprites.FindIndex(i => i.Sprites.Contains(Character.Left.Helmet));
                     break;
                 }
                 case "Vest":
@@ -139,9 +137,9 @@ namespace Assets.HeroEditor4D.Common.Scripts.EditorScripts
 
                     switch (tab.name)
                     {
-                        case "Vest": part = "FrontBody"; break;
-                        case "Bracers": part = "FrontArmL"; break;
-                        case "Leggings": part = "FrontLegL"; break;
+                        case "Vest": part = "LeftBody"; break;
+                        case "Bracers": part = "LeftArmL"; break;
+                        case "Leggings": part = "LeftLegL"; break;
                         default: throw new NotSupportedException(tab.name);
                     }
 
@@ -149,7 +147,7 @@ namespace Assets.HeroEditor4D.Common.Scripts.EditorScripts
 
                     ItemCollection.Active.Items = sprites.Select(i => CreateFakeItemParams(new Item(i.Id), i, ".Armor.", $".{tab.name}.")).ToList();
                     equipAction = item => Character.Equip(item.Sprite, tab.name.ToEnum<EquipmentPart>());
-                    equippedIndex = Character.Front.Armor == null ? -1 : sprites.FindIndex(i => i.Sprites.Contains(Character.Front.Armor.SingleOrDefault(j => j.name == part)));
+                    equippedIndex = Character.Left.Armor == null ? -1 : sprites.FindIndex(i => i.Sprites.Contains(Character.Left.Armor.SingleOrDefault(j => j.name == part)));
                     break;
                 }
                 case "Shield":
@@ -158,7 +156,7 @@ namespace Assets.HeroEditor4D.Common.Scripts.EditorScripts
 
                     ItemCollection.Active.Items = sprites.Select(i => CreateFakeItemParams(new Item(i.Id), i)).ToList();
                     equipAction = item => Character.Equip(item.Sprite, EquipmentPart.Shield);
-                    equippedIndex = Character.Front.Shield == null ? -1 : sprites.FindIndex(i => i.Sprites.SequenceEqual(Character.Front.Shield));
+                    equippedIndex = Character.Left.Shield == null ? -1 : sprites.FindIndex(i => i.Sprites.SequenceEqual(Character.Left.Shield));
                     break;
                 }
                 case "Melee1H":
@@ -167,7 +165,7 @@ namespace Assets.HeroEditor4D.Common.Scripts.EditorScripts
 
                     ItemCollection.Active.Items = sprites.Select(i => CreateFakeItemParams(new Item(i.Id), i)).ToList();
                     equipAction = item => Character.Equip(item.Sprite, EquipmentPart.MeleeWeapon1H);
-                    equippedIndex = sprites.FindIndex(i => i.Sprites.Contains(Character.Front.PrimaryWeapon));
+                    equippedIndex = sprites.FindIndex(i => i.Sprites.Contains(Character.Left.PrimaryWeapon));
                     break;
                 }
                 case "Melee2H":
@@ -176,7 +174,7 @@ namespace Assets.HeroEditor4D.Common.Scripts.EditorScripts
 
                     ItemCollection.Active.Items = sprites.Select(i => CreateFakeItemParams(new Item(i.Id), i)).ToList();
                     equipAction = item => Character.Equip(item.Sprite, EquipmentPart.MeleeWeapon2H);
-                    equippedIndex = sprites.FindIndex(i => i.Sprites.Contains(Character.Front.PrimaryWeapon));
+                    equippedIndex = sprites.FindIndex(i => i.Sprites.Contains(Character.Left.PrimaryWeapon));
                     break;
                 }
                 case "Bow":
@@ -185,7 +183,7 @@ namespace Assets.HeroEditor4D.Common.Scripts.EditorScripts
 
                     ItemCollection.Active.Items = sprites.Select(i => CreateFakeItemParams(new Item(i.Id), i)).ToList();
                     equipAction = item => Character.Equip(item.Sprite, EquipmentPart.Bow);
-                    equippedIndex = Character.Front.CompositeWeapon == null ? -1 : sprites.FindIndex(i => i.Sprites.SequenceEqual(Character.Front.CompositeWeapon));
+                    equippedIndex = Character.Left.CompositeWeapon == null ? -1 : sprites.FindIndex(i => i.Sprites.SequenceEqual(Character.Left.CompositeWeapon));
                     break;
                 }
                 case "Crossbow":
@@ -194,7 +192,7 @@ namespace Assets.HeroEditor4D.Common.Scripts.EditorScripts
 
                     ItemCollection.Active.Items = sprites.Select(i => CreateFakeItemParams(new Item(i.Id), i)).ToList();
                     equipAction = item => Character.Equip(item.Sprite, EquipmentPart.Crossbow);
-                    equippedIndex = Character.Front.CompositeWeapon == null ? -1 : sprites.FindIndex(i => i.Sprites.SequenceEqual(Character.Front.CompositeWeapon));
+                    equippedIndex = Character.Left.CompositeWeapon == null ? -1 : sprites.FindIndex(i => i.Sprites.SequenceEqual(Character.Left.CompositeWeapon));
                     break;
                 }
                 case "Firearm1H":
@@ -203,7 +201,7 @@ namespace Assets.HeroEditor4D.Common.Scripts.EditorScripts
 
                     ItemCollection.Active.Items = sprites.Select(i => CreateFakeItemParams(new Item(i.Id), i)).ToList();
                     equipAction = item => Character.Equip(item.Sprite, EquipmentPart.Firearm1H);
-                    equippedIndex = Character.Front.SecondaryWeapon == null ? -1 : sprites.FindIndex(i => i.Sprites.Contains(Character.Front.PrimaryWeapon));
+                    equippedIndex = Character.Left.SecondaryWeapon == null ? -1 : sprites.FindIndex(i => i.Sprites.Contains(Character.Left.PrimaryWeapon));
                     break;
                 }
                 case "Firearm2H":
@@ -212,7 +210,7 @@ namespace Assets.HeroEditor4D.Common.Scripts.EditorScripts
 
                     ItemCollection.Active.Items = sprites.Select(i => CreateFakeItemParams(new Item(i.Id), i)).ToList();
                     equipAction = item => Character.Equip(item.Sprite, EquipmentPart.Firearm2H);
-                    equippedIndex = Character.Front.PrimaryWeapon == null ? -1 : sprites.FindIndex(i => i.Sprites.Contains(Character.Front.PrimaryWeapon));
+                    equippedIndex = Character.Left.PrimaryWeapon == null ? -1 : sprites.FindIndex(i => i.Sprites.Contains(Character.Left.PrimaryWeapon));
                     break;
                 }
                 case "SecondaryFirearm1H":
@@ -221,7 +219,7 @@ namespace Assets.HeroEditor4D.Common.Scripts.EditorScripts
 
                     ItemCollection.Active.Items = sprites.Select(i => CreateFakeItemParams(new Item(i.Id), i)).ToList();
                     equipAction = item => Character.Equip(item.Sprite, EquipmentPart.SecondaryFirearm1H);
-                    equippedIndex = Character.Front.SecondaryWeapon == null ? -1 : sprites.FindIndex(i => i.Sprites.Contains(Character.Front.SecondaryWeapon));
+                    equippedIndex = Character.Left.SecondaryWeapon == null ? -1 : sprites.FindIndex(i => i.Sprites.Contains(Character.Left.SecondaryWeapon));
                     break;
                 }
                 case "Body":
@@ -230,7 +228,7 @@ namespace Assets.HeroEditor4D.Common.Scripts.EditorScripts
 
                     ItemCollection.Active.Items = SpriteCollection.Body.Select(i => CreateFakeItemParams(new Item(i.Id), i)).ToList();
                     equipAction = item => Character.SetBody(item.Sprite, BodyPart.Body);
-                    equippedIndex = Character.Front.Body == null ? -1 : sprites.FindIndex(i => i.Sprites.SequenceEqual(Character.Front.Body));
+                    equippedIndex = Character.Left.Body == null ? -1 : sprites.FindIndex(i => i.Sprites.SequenceEqual(Character.Left.Body));
                     break;
                 }
                 case "Head":
@@ -239,7 +237,7 @@ namespace Assets.HeroEditor4D.Common.Scripts.EditorScripts
 
                     ItemCollection.Active.Items = sprites.Select(i => CreateFakeItemParams(new Item(i.Id), i)).ToList();
                     equipAction = item => Character.SetBody(item.Sprite, BodyPart.Head);
-                    equippedIndex = Character.Front.Head == null ? -1 : sprites.FindIndex(i => i.Sprites.Contains(Character.Front.Head));
+                    equippedIndex = Character.Left.Head == null ? -1 : sprites.FindIndex(i => i.Sprites.Contains(Character.Left.Head));
                     break;
                 }
                 case "Ears":
@@ -248,7 +246,7 @@ namespace Assets.HeroEditor4D.Common.Scripts.EditorScripts
 
                     ItemCollection.Active.Items = sprites.Select(i => CreateFakeItemParams(new Item(i.Id), i)).ToList();
                     equipAction = item => Character.SetBody(item.Sprite, BodyPart.Ears);
-                    equippedIndex = Character.Front.Ears == null ? -1 : sprites.FindIndex(i => i.Sprites.SequenceEqual(Character.Front.Ears));
+                    equippedIndex = Character.Left.Ears == null ? -1 : sprites.FindIndex(i => i.Sprites.SequenceEqual(Character.Left.Ears));
                     break;
                 }
                 case "Eyebrows":
@@ -257,7 +255,7 @@ namespace Assets.HeroEditor4D.Common.Scripts.EditorScripts
 
                     ItemCollection.Active.Items = sprites.Select(i => CreateFakeItemParams(new Item(i.Id), i)).ToList();
                     equipAction = item => Character.SetBody(item.Sprite, BodyPart.Eyebrows);
-                    equippedIndex = sprites.FindIndex(i => i.Sprites.Contains(Character.Front.Expressions[0].Eyebrows));
+                    equippedIndex = sprites.FindIndex(i => i.Sprites.Contains(Character.Left.Expressions[0].Eyebrows));
                     break;
                 }
                 case "Eyes":
@@ -266,7 +264,7 @@ namespace Assets.HeroEditor4D.Common.Scripts.EditorScripts
 
                     ItemCollection.Active.Items = sprites.Select(i => CreateFakeItemParams(new Item(i.Id), i)).ToList();
                     equipAction = item => Character.SetBody(item.Sprite, BodyPart.Eyes);
-                    equippedIndex = sprites.FindIndex(i => i.Sprites.Contains(Character.Front.Expressions[0].Eyes));
+                    equippedIndex = sprites.FindIndex(i => i.Sprites.Contains(Character.Left.Expressions[0].Eyes));
                     break;
                 }
                 case "Hair":
@@ -275,7 +273,7 @@ namespace Assets.HeroEditor4D.Common.Scripts.EditorScripts
 
                     ItemCollection.Active.Items = sprites.Select(i => CreateFakeItemParams(new Item(i.Id), i)).ToList();
                     equipAction = item => Character.SetBody(item.Sprite, BodyPart.Hair);
-                    equippedIndex = sprites.FindIndex(i => i.Sprites.Contains(Character.Front.Hair));
+                    equippedIndex = sprites.FindIndex(i => i.Sprites.Contains(Character.Left.Hair));
                     break;
                 }
                 case "Beard":
@@ -284,7 +282,7 @@ namespace Assets.HeroEditor4D.Common.Scripts.EditorScripts
 
                     ItemCollection.Active.Items = sprites.Select(i => CreateFakeItemParams(new Item(i.Id), i)).ToList();
                     equipAction = item => Character.SetBody(item.Sprite, BodyPart.Beard);
-                    equippedIndex = sprites.FindIndex(i => i.Sprites.Contains(Character.Front.Beard));
+                    equippedIndex = sprites.FindIndex(i => i.Sprites.Contains(Character.Left.Beard));
                     break;
                 }
                 case "Mouth":
@@ -293,7 +291,7 @@ namespace Assets.HeroEditor4D.Common.Scripts.EditorScripts
 
                     ItemCollection.Active.Items = sprites.Select(i => CreateFakeItemParams(new Item(i.Id), i)).ToList();
                     equipAction = item => Character.SetBody(item.Sprite, BodyPart.Mouth);
-                    equippedIndex = sprites.FindIndex(i => i.Sprites.Contains(Character.Front.Expressions[0].Mouth));
+                    equippedIndex = sprites.FindIndex(i => i.Sprites.Contains(Character.Left.Expressions[0].Mouth));
                     break;
                 }
                 case "Makeup":
@@ -302,7 +300,7 @@ namespace Assets.HeroEditor4D.Common.Scripts.EditorScripts
 
                     ItemCollection.Active.Items = sprites.Select(i => CreateFakeItemParams(new Item(i.Id), i)).ToList();
                     equipAction = item => Character.SetBody(item.Sprite, BodyPart.Makeup);
-                    equippedIndex = sprites.FindIndex(i => i.Sprites.Contains(Character.Front.Makeup));
+                    equippedIndex = sprites.FindIndex(i => i.Sprites.Contains(Character.Left.Makeup));
                     break;
                 }
                 case "Mask":
@@ -311,7 +309,7 @@ namespace Assets.HeroEditor4D.Common.Scripts.EditorScripts
 
                     ItemCollection.Active.Items = sprites.Select(i => CreateFakeItemParams(new Item(i.Id), i)).ToList();
                     equipAction = item => Character.Equip(item.Sprite, EquipmentPart.Mask, item.Sprite != null && item.Sprite.Tags.Contains("Paint") ? (Color?) null : Color.white);
-                    equippedIndex = sprites.FindIndex(i => i.Sprites.Contains(Character.Front.Mask));
+                    equippedIndex = sprites.FindIndex(i => i.Sprites.Contains(Character.Left.Mask));
                     break;
                 }
                 case "Earrings":
@@ -320,7 +318,7 @@ namespace Assets.HeroEditor4D.Common.Scripts.EditorScripts
 
                     ItemCollection.Active.Items = sprites.Select(i => CreateFakeItemParams(new Item(i.Id), i)).ToList();
                     equipAction = item => Character.Equip(item.Sprite, EquipmentPart.Earrings);
-                    equippedIndex = Character.Front.Earrings == null ? -1 : sprites.FindIndex(i => i.Sprites.SequenceEqual(Character.Front.Earrings));
+                    equippedIndex = Character.Left.Earrings == null ? -1 : sprites.FindIndex(i => i.Sprites.SequenceEqual(Character.Left.Earrings));
                     break;
                 }
                 case "Supplies":

@@ -14,35 +14,35 @@ namespace Assets.HeroEditor4D.Common.Scripts.CharacterScripts
         public static void Randomize(this Character4D character)
         {
             character.ResetEquipment();
-            character.SetBody(character.Front.SpriteCollection.Eyes.Random(), BodyPart.Eyes);
+            character.SetBody(character.Left.SpriteCollection.Eyes.Random(), BodyPart.Eyes);
 
-            if (character.Front.SpriteCollection.Hair.Count > 0) character.SetBody(character.Front.SpriteCollection.Hair.Random(), BodyPart.Hair, RandomColor);
-            if (character.Front.SpriteCollection.Eyebrows.Count > 0) character.SetBody(character.Front.SpriteCollection.Eyebrows.Random(), BodyPart.Eyebrows);
-            if (character.Front.SpriteCollection.Eyes.Count > 0) character.SetBody(character.Front.SpriteCollection.Eyes.Random(), BodyPart.Eyes, RandomColor);
-            if (character.Front.SpriteCollection.Ears.Count > 0) character.SetBody(character.Front.SpriteCollection.Ears.Random(), BodyPart.Ears);
-            if (character.Front.SpriteCollection.Mouth.Count > 0) character.SetBody(character.Front.SpriteCollection.Mouth.Random(), BodyPart.Mouth);
+            if (character.Left.SpriteCollection.Hair.Count > 0) character.SetBody(character.Left.SpriteCollection.Hair.Random(), BodyPart.Hair, RandomColor);
+            if (character.Left.SpriteCollection.Eyebrows.Count > 0) character.SetBody(character.Left.SpriteCollection.Eyebrows.Random(), BodyPart.Eyebrows);
+            if (character.Left.SpriteCollection.Eyes.Count > 0) character.SetBody(character.Left.SpriteCollection.Eyes.Random(), BodyPart.Eyes, RandomColor);
+            if (character.Left.SpriteCollection.Ears.Count > 0) character.SetBody(character.Left.SpriteCollection.Ears.Random(), BodyPart.Ears);
+            if (character.Left.SpriteCollection.Mouth.Count > 0) character.SetBody(character.Left.SpriteCollection.Mouth.Random(), BodyPart.Mouth);
 
-            character.Equip(character.Front.SpriteCollection.Armor.Random(), EquipmentPart.Helmet);
-            character.Equip(character.Front.SpriteCollection.Armor.Random(), EquipmentPart.Armor);
+            character.Equip(character.Left.SpriteCollection.Armor.Random(), EquipmentPart.Helmet);
+            character.Equip(character.Left.SpriteCollection.Armor.Random(), EquipmentPart.Armor);
 
             switch (Random.Range(0, 5))
             {
                 case 0:
-                    character.Equip(character.Front.SpriteCollection.MeleeWeapon1H.Random(), EquipmentPart.MeleeWeapon1H);
+                    character.Equip(character.Left.SpriteCollection.MeleeWeapon1H.Random(), EquipmentPart.MeleeWeapon1H);
                     character.UnEquip(EquipmentPart.Shield);
                     break;
                 case 1:
-                    character.Equip(character.Front.SpriteCollection.MeleeWeapon1H.Random(), EquipmentPart.MeleeWeapon1H);
-                    character.Equip(character.Front.SpriteCollection.Shield.Random(), EquipmentPart.Shield);
+                    character.Equip(character.Left.SpriteCollection.MeleeWeapon1H.Random(), EquipmentPart.MeleeWeapon1H);
+                    character.Equip(character.Left.SpriteCollection.Shield.Random(), EquipmentPart.Shield);
                     break;
                 case 2:
-                    character.Equip(character.Front.SpriteCollection.MeleeWeapon2H.Random(), EquipmentPart.MeleeWeapon2H);
+                    character.Equip(character.Left.SpriteCollection.MeleeWeapon2H.Random(), EquipmentPart.MeleeWeapon2H);
                     break;
                 case 3:
-                    character.Equip(character.Front.SpriteCollection.Bow.Random(), EquipmentPart.Bow);
+                    character.Equip(character.Left.SpriteCollection.Bow.Random(), EquipmentPart.Bow);
                     break;
                 case 4:
-                    character.Equip(character.Front.SpriteCollection.Firearm1H.Random(), EquipmentPart.SecondaryFirearm1H);
+                    character.Equip(character.Left.SpriteCollection.Firearm1H.Random(), EquipmentPart.SecondaryFirearm1H);
                     break;
             }
         }

@@ -18,10 +18,7 @@ namespace Assets.HeroEditor4D.Common.Scripts.CharacterScripts
 	public class Character4D : MonoBehaviour
     {
         [Header("Parts")]
-        public Character Front;
-        public Character Back;
         public Character Left;
-        public Character Right;
         public List<Character> Parts;
         public List<GameObject> Shadows;
 
@@ -34,7 +31,7 @@ namespace Assets.HeroEditor4D.Common.Scripts.CharacterScripts
         public Color BodyColor;
         
         public SpriteCollection SpriteCollection => Parts[0].SpriteCollection;
-        private List<Character> PartsExceptBack => new List<Character> { Front, Left, Right };
+        private List<Character> PartsExceptBack => new List<Character> { Left };
 
         public List<Sprite> Body { set { Parts.ForEach(i => i.Body = value.ToList()); } }
         public List<Sprite> Head { set { Parts.ForEach(i => i.Head = i.HairRenderer.GetComponent<SpriteMapping>().FindSprite(value)); } }
@@ -53,11 +50,11 @@ namespace Assets.HeroEditor4D.Common.Scripts.CharacterScripts
         public List<Sprite> Makeup { set { Parts.ForEach(i => { if (i.MakeupRenderer) i.Makeup = i.MakeupRenderer.GetComponent<SpriteMapping>().FindSprite(value); }); } }
         public List<Sprite> Mask { set { Parts.ForEach(i => { if (i.MaskRenderer) i.Mask = i.MaskRenderer.GetComponent<SpriteMapping>().FindSprite(value); }); } }
         public List<Sprite> Earrings { set { Parts.ForEach(i => i.Earrings = value.ToList()); } }
-        public WeaponType WeaponType { get => Front.WeaponType; set { Parts.ForEach(i => i.WeaponType = value); } }
+        public WeaponType WeaponType { get => Left.WeaponType; set { Parts.ForEach(i => i.WeaponType = value); } }
 
         public void OnValidate()
         {
-            Parts = new List<Character> { Front, Back, Left, Right };
+            Parts = new List<Character> { Left };
             Parts.ForEach(i => i.BodyRenderers.ForEach(j => j.color = BodyColor));
             Parts.ForEach(i => i.EarsRenderers.ForEach(j => j.color = BodyColor));
         }
@@ -144,49 +141,12 @@ namespace Assets.HeroEditor4D.Common.Scripts.CharacterScripts
             if (Direction == Vector2.zero)
             {
                 Parts.ForEach(i => i.SetActive(true));
-                Shadows.ForEach(i => i.SetActive(true));
-
-                Parts[0].transform.localPosition = Shadows[0].transform.localPosition = new Vector3(0, -1.25f);
-                Parts[1].transform.localPosition = Shadows[1].transform.localPosition = new Vector3(0, 1.25f);
-                Parts[2].transform.localPosition = Shadows[2].transform.localPosition = new Vector3(-1.5f, 0);
-                Parts[3].transform.localPosition = Shadows[3].transform.localPosition = new Vector3(1.5f, 0);
-
                 return;
             }
 
 			Parts.ForEach(i => i.transform.localPosition = Vector3.zero);
 			Shadows.ForEach(i => i.transform.localPosition = Vector3.zero);
 
-			int index;
-
-			if (direction == Vector2.left)
-			{
-				index = 2;
-			}
-			else if (direction == Vector2.right)
-			{
-				index = 3;
-			}
-			else if (direction == Vector2.up)
-			{
-				index = 1;
-			}
-			else if (direction == Vector2.down)
-			{
-				index = 0;
-			}
-            else
-			{
-				throw new NotSupportedException();
-			}
-
-			for (var i = 0; i < Parts.Count; i++)
-			{
-                Parts[i].SetActive(i == index);
-				Shadows[i].SetActive(i == index);
-			}
-
-            Active = Parts[index];
         }
 
         public void CopyFrom(Character4D character)
@@ -202,7 +162,7 @@ namespace Assets.HeroEditor4D.Common.Scripts.CharacterScripts
 
         public string ToJson()
         {
-            return Front.ToJson();
+            return Left.ToJson();
         }
 
         public void FromJson(string json, bool silent)
