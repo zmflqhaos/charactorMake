@@ -1054,6 +1054,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 9765338e47474334f8008f613a257d24, type: 3}
   - {fileID: 21300000, guid: 5674638ed8cffa243b0b125f78b1d6f9, type: 3}
   - {fileID: 21300000, guid: 63b9f48eda4f57c40b3b59757105fff2, type: 3}
+  - {fileID: 21300000, guid: cb97129ed02f3544f892e32f223b9a33, type: 3}
   - {fileID: 21300000, guid: 1de1079edcdb5714ba839c9f9de5ea14, type: 3}
   - {fileID: 21300000, guid: 3092bb9e3e29f1241bfea272b6ee98c3, type: 3}
   - {fileID: 21300000, guid: 5f3ddb9e0c75b0d4ba221a7cdb9e8e24, type: 3}
@@ -2167,6 +2168,7 @@ SpriteAtlas:
   - PursuerShield
   - KnightArmor
   - Dice
+  - ' Machete'
   - Candle
   - GoblinShaman [ShowEars]
   - LongBow

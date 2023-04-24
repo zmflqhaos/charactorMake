@@ -1647,6 +1647,7 @@ SpriteAtlas:
   - {fileID: 6591478365344907407, guid: 6c349ae6e68fe734f8b505859ea75c7f, type: 3}
   - {fileID: 21300000, guid: 0aad1ee6a045e9b468d3f500902cfd16, type: 3}
   - {fileID: 21300000, guid: bb5d5507a87b56547b69dec428e42dea, type: 3}
+  - {fileID: 21300000, guid: 80855c174f5f1914d80b6f593e3a42f9, type: 3}
   - {fileID: 21300000, guid: e5ac81275bf6ea24faec9ac18f7881de, type: 3}
   - {fileID: 21300000, guid: c5a227272a6a3ce43964f7bff5f71e52, type: 3}
   - {fileID: 21300000, guid: c6bb8b27081199e408dc56ebc11b7dfd, type: 3}
@@ -5224,6 +5225,7 @@ SpriteAtlas:
   - Front
   - Cider
   - OldWoodenHammer
+  - ' Machete'
   - BattleSpear
   - Whetstone
   - Exp
